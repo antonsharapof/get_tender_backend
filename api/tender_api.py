@@ -14,9 +14,6 @@ router = APIRouter(
 )
 
 
-@router.get("/about")
-async def say_about(user: auth.User = Depends(get_current_user)):
-    return {"About": "It is tender link"}
 
 @router.get("/list")
 async def get_list(service: TenderService = Depends()):

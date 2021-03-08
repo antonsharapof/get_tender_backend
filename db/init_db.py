@@ -3,8 +3,9 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from motor import motor_asyncio
 from settings import settings
+from sqlalchemy import MetaData
 
-engine = create_engine(settings.postgres_url)
+engine = create_engine(settings.sqlite_url)
 Base = declarative_base()
 Session = sessionmaker(bind=engine)
 
