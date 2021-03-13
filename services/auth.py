@@ -98,7 +98,7 @@ class AuthService:
 
         return self.create_token(user)
 
-    def authenticate_user(self, username: str, password: str) -> auth_schema.Token:
+    def authenticate_user(self, email: str, password: str) -> auth_schema.Token:
         exception = HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail='Incorrect username or password',
@@ -109,10 +109,10 @@ class AuthService:
         user = (
             self.session
                 .query(user_model.User)
-                .filter(user_model.User.username == username)
+                .filter(user_model.User.email == email)
                 .first()
         )
-
+        print(dir(user))
         if not user:
             raise exception
         if not self.verify_password(password, user.password_hash):

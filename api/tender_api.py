@@ -1,11 +1,9 @@
 from fastapi import APIRouter, Depends
-
+from db.init_db import Session, get_session
 from services.auth import get_current_user
-from services.tender import TenderService
+from services.tender import TenderService, get_tenders_list
+from schemas.tender_schema import TenderMain
 from typing import List
-from schemas import tender_schema, auth
-from db import init_db
-
 
 router = APIRouter(
     prefix="/tenders",
@@ -14,20 +12,6 @@ router = APIRouter(
 )
 
 
-
-@router.get("/list")
-async def get_list(service: TenderService = Depends()):
-    return await service.get_all_tenders()
-
-
-
-@router.post("/filtered_list")
-async def get_filtered_list(data: tender_schema.FilterParams):
-     s = TenderService()
-     return await s.get_filtered_tenders(data)
-
-
-# @router.post("/filtered_list")
-# async def get_filtered_list(data: tender_schema.FilterParams):
-#     print(data)
-#     return data
+@router.get("/list", response_model=List[TenderMain])
+async def get_list(db: Session = Depends(get_session)):
+    return await get_tenders_list(db)

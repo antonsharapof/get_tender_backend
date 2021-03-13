@@ -49,3 +49,5 @@ urllib3==1.26.3
 uvicorn==0.13.3
 watchgod==0.6
 websockets==8.1
+
+pandas~=1.2.3

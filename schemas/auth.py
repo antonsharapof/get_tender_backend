@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-
+from typing import Union
 
 class BaseUser(BaseModel):
     email: str
@@ -25,7 +25,7 @@ class UserLogin(BaseModel):
 
 class UserFullInfo(BaseUser):
     id: int
-    position: str
+    position: str = None
 
     class Config:
         orm_mode = True
