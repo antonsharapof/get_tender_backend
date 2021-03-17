@@ -33,3 +33,4 @@ def user_in_db(db: Session) -> Generator:
     yield user_data
     db.delete(user)
     db.commit()
+
