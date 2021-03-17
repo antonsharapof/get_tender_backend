@@ -8,6 +8,9 @@
 ###Технологии используемые в проекте
 - Python
 - FastApi
+- SqlAlchemy
+- Postgresql
+- Pydantic
 - Vue.js
 - Airflow
 - Selenium
